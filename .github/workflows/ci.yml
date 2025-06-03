@@ -1,0 +1,49 @@
+name: ci
+
+env:
+  poetry-version: 1.8.2
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: build environment
+        uses: ./.github/actions/build
+
+      - name: check
+        run: make check
+
+  test:
+    needs: check
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_PASSWORD: secret
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: build environment
+        uses: ./.github/actions/build
+
+      - name: test
+        run: make test

@@ -24,6 +24,15 @@ pytest-django = "^4.11.1"
 ruff = "^0.11.12"
 toml-sort = "^0.24.2"
 
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "core.settings"
+addopts = ["--no-migrations"]
+filterwarnings = [
+    "ignore:distutils Version classes are deprecated",
+    "ignore:pkg_resources is deprecated as an API",
+]
+pythonpath = "src"
+
 [tool.ruff]
 line-length = 160
 target-version = "py311"

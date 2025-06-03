@@ -19,9 +19,12 @@ check:
 	poetry run ruff check src
 	poetry run toml-sort pyproject.toml --check
 
-mr: fmt check
+mr: fmt check test
 
 run:
 	$(manage) collectstatic --no-input
 	$(manage) migrate
 	$(manage) runserver
+
+test:
+	poetry run pytest --create-db
