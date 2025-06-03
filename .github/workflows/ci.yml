@@ -1,7 +1,7 @@
 name: ci
 
 env:
-  poetry-version: 1.8.2
+  poetry-version: 2.0.1
 
 on:
   pull_request:
