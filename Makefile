@@ -1,9 +1,12 @@
 manage = poetry run python src/manage.py
 
 cp-envs:
-	cp .env .env.example
+	cp .env.example .env
 
-dev: cp-envs
+deps:
+	poetry install --no-root
+
+dev: cp-envs deps
 	docker-compose up --build --detach
 	make mr
 
