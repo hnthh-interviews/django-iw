@@ -7,6 +7,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
+    "rest_framework",
+
     "apps.campaigns.apps.CampaignsConfig",
     "models.apps.ModelsConfig",
 ]
