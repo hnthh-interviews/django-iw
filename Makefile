@@ -15,6 +15,12 @@ fmt:
 	poetry run ruff check src --fix --unsafe-fixes
 	poetry run toml-sort pyproject.toml
 
+	make fmt-gitignore
+
+fmt-gitignore:
+	sort --output .gitignore .gitignore
+	awk "NF" .gitignore > .gitignore.temp && mv .gitignore.temp .gitignore
+
 check:
 	$(manage) makemigrations --check --dry-run --no-input
 	$(manage) check

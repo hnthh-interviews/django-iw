@@ -1,9 +1,6 @@
 .env
 .python-version
-
+.venv
 __pycache__
-
 staticfiles
-
-venv/
-.venv/
+venv
