@@ -31,6 +31,7 @@ toml-sort = "^0.24.2"
 DJANGO_SETTINGS_MODULE = "core.settings"
 addopts = ["--no-migrations"]
 filterwarnings = [
+    "ignore:Pagination may yield inconsistent results with an unordered object_list",
     "ignore:distutils Version classes are deprecated",
     "ignore:pkg_resources is deprecated as an API",
 ]

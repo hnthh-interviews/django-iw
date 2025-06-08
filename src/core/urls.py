@@ -3,6 +3,7 @@ from django.urls import include, path
 
 agency = [
     path("campaigns/", include("apps.campaigns.api.v1.agency.urls")),
+    path("strategies/", include("apps.strategies.api.v1.agency.urls")),
 ]
 
 urlpatterns = [

@@ -10,6 +10,7 @@ INSTALLED_APPS = [
     "rest_framework",
 
     "apps.campaigns.apps.CampaignsConfig",
+    "apps.strategies.apps.StrategiesConfig",
     "models.apps.ModelsConfig",
 ]
 # fmt: on
