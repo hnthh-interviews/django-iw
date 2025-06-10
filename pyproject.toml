@@ -22,6 +22,7 @@ requires-python = ">=3.11,<4.0"
 version = "0.1.0"
 
 [tool.poetry.group.dev.dependencies]
+flake8-alphabetize = "^0.0.21"
 mixer = "^7.2.2"
 pytest-django = "^4.11.1"
 ruff = "^0.11.12"
@@ -31,7 +32,6 @@ toml-sort = "^0.24.2"
 DJANGO_SETTINGS_MODULE = "core.settings"
 addopts = ["--no-migrations"]
 filterwarnings = [
-    "ignore:Pagination may yield inconsistent results with an unordered object_list",
     "ignore:distutils Version classes are deprecated",
     "ignore:pkg_resources is deprecated as an API",
 ]

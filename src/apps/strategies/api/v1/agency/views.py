@@ -5,7 +5,7 @@ from models.models import Strategy
 
 class StrategyView(AppListModelMixin, AppGenericViewSet):
     http_method_names = ("get",)
-    queryset = Strategy.objects.all().select_related("campaign")
+    queryset = Strategy.objects.select_related("campaign").order_by("name")
     serializer_action_classes = {
         "list": StrategyListAsAgencySerializer,
     }

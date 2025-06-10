@@ -33,13 +33,11 @@ def test_perfomance(as_anon, count, django_assert_num_queries, factory, url):
         as_anon.get(url)
 
 
-def test_pagination(as_anon, factory, url):
-    factory.cycle(101).campaign()
+def test_ordering_by_name(as_anon, factory, url):
+    factory.cycle(3).campaign(name=(name for name in "bca"))
 
-    response = as_anon.get(url)
-    response_next_page = as_anon.get(response['next'])
+    response = as_anon.get(url)["results"]
 
-    assert response["count"] == 101
-    assert len(response["results"]) == 100
-    assert response_next_page["count"] == 101
-    assert len(response_next_page["results"]) == 1
+    assert response[0]["name"] == "a"
+    assert response[1]["name"] == "b"
+    assert response[2]["name"] == "c"

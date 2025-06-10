@@ -10,7 +10,7 @@ class StrategyListAsAgencySerializer(serializers.ModelSerializer):
     class Meta:
         model = Strategy
         fields = (
-            "id",
             "campaign",
+            "id",
             "name",
         )
