@@ -12,7 +12,7 @@ dev: cp-envs deps
 
 fmt:
 	poetry run ruff format src conftest.py
-	poetry run ruff check conftest.py src --fix --unsafe-fixes
+	poetry run ruff check src conftest.py --fix --unsafe-fixes
 	poetry run toml-sort pyproject.toml
 
 	make fmt-gitignore
@@ -24,15 +24,9 @@ fmt-gitignore:
 check:
 	$(manage) makemigrations --check --dry-run --no-input
 	$(manage) check
-	poetry run ruff format --check src
-	poetry run ruff check src
+	poetry run ruff format --check src conftest.py
+	poetry run ruff check src conftest.py
 	poetry run toml-sort pyproject.toml --check
-
-	make check-conftest
-
-check-conftest:
-	poetry run ruff format --check conftest.py
-	poetry run ruff check conftest.py
 
 mr: cp-envs fmt check test
 
