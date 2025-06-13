@@ -1,11 +1,11 @@
 from rest_framework import serializers
 
-from apps.campaigns.api.v1.agency.serializers import CampaignListAsAgencySerializer
+from apps.strategies.api.v1.agency.serializers.campaign import CampaignForStrategyListSerializer
 from models.models import Strategy
 
 
 class StrategyListAsAgencySerializer(serializers.ModelSerializer):
-    campaign = CampaignListAsAgencySerializer(read_only=True)
+    campaign = CampaignForStrategyListSerializer(read_only=True)
 
     class Meta:
         model = Strategy
