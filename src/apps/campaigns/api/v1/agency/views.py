@@ -5,7 +5,7 @@ from models.models import Campaign
 
 class CampaignView(AppListModelMixin, AppGenericViewSet):
     http_method_names = ("get",)
-    queryset = Campaign.objects.all().order_by("name")
+    queryset = Campaign.objects.order_by("name")
     serializer_action_classes = {
         "list": CampaignListAsAgencySerializer,
     }
