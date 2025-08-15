@@ -31,7 +31,8 @@ def test_response(as_anon, strategy, url):
     }
 
 
-def test_campaign_response(as_anon, campaign, strategy, url):
+@pytest.mark.usefixtures("strategy")
+def test_campaign_response(as_anon, campaign, url):
     response = as_anon.get(url)["results"][0]["campaign"]
 
     assert response["id"] == campaign.id

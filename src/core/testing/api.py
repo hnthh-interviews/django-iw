@@ -8,6 +8,19 @@ from rest_framework_simplejwt.tokens import AccessToken
 pytestmark = pytest.mark.django_db
 
 
+def is_json(response):
+    if response.has_header("content-type"):
+        return "json" in response.get("content-type")
+
+    return False
+
+
+def decode_response(response):
+    content = response.content.decode("utf-8", errors="ignore")
+
+    return json.loads(content) if is_json(response=response) else content
+
+
 class DRFClient(APIClient):
     def __init__(self, user=None, **kwargs):
         super().__init__(**kwargs)
@@ -46,24 +59,13 @@ class DRFClient(APIClient):
         if as_response:
             return response
 
-        content = self.decode_response(response=response)
+        content = decode_response(response=response)
 
         assert response.status_code == expected_status_code, (  # noqa: S101
             f"{response.status_code}, content: {content}"
         )
 
         return content
-
-    def decode_response(self, response):
-        content = response.content.decode("utf-8", errors="ignore")
-
-        return json.loads(content) if self.is_json(response=response) else content
-
-    def is_json(self, response):
-        if response.has_header("content-type"):
-            return "json" in response.get("content-type")
-
-        return False
 
     def get(self, *args, **kwargs):
         kwargs.setdefault("expected_status_code", status.HTTP_200_OK)

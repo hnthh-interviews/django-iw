@@ -41,6 +41,7 @@ line-length = 160
 target-version = "py311"
 
 [tool.ruff.lint]
+fixable = ["ALL"]
 ignore = [
     "ANN001",  # missing type annotation for function argument `{}`
     "ANN002",  # missing type annotation for `{}`
@@ -52,6 +53,7 @@ ignore = [
     "ANN206",  # missing return type annotation for class method `{}`
     "ANN401",  # dynamically typed expressions (typing.Any) are disallowed in `{}`
     "COM812",  # trailing comma missing
+    "CPY001",  # missing copyright notice at top of the file
     "D100",  # missing docstring in public module
     "D101",  # missing docstring in public class
     "D102",  # missing docstring in public method
@@ -69,6 +71,7 @@ ignore = [
     "RUF001",  # string contains ambiguous letter
     "RUF012",  # mutable class attributes should be annotated with `typing.ClassVar`
 ]
+preview = true
 select = ["ALL"]
 
 [tool.ruff.lint.flake8-tidy-imports]
@@ -79,7 +82,6 @@ ban-relative-imports = "all"
     "RUF012",  # mutable class attributes should be annotated with `typing.ClassVar`
 ]
 "tests/*" = [
-    "INP001",  # add an `__init__.py`
     "S101",  # use of `assert` detected
 ]
 
