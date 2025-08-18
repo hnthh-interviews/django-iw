@@ -358,22 +358,6 @@ docs = ["sphinx", "sphinx_rtd_theme"]
 testing = ["Django", "django-configurations (>=2.0)"]
 
 [[package]]
-name = "pytest-freezegun"
-version = "0.4.2"
-description = "Wrap tests with fixtures in freeze_time"
-optional = false
-python-versions = "*"
-groups = ["dev"]
-files = [
-    {file = "pytest-freezegun-0.4.2.zip", hash = "sha256:19c82d5633751bf3ec92caa481fb5cffaac1787bd485f0df6436fd6242176949"},
-    {file = "pytest_freezegun-0.4.2-py2.py3-none-any.whl", hash = "sha256:5318a6bfb8ba4b709c8471c94d0033113877b3ee02da5bfcd917c1889cde99a7"},
-]
-
-[package.dependencies]
-freezegun = ">0.3"
-pytest = ">=3.0.0"
-
-[[package]]
 name = "pytest-freezer"
 version = "0.4.9"
 description = "Pytest plugin providing a fixture interface for spulec/freezegun"
@@ -515,4 +499,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<4.0"
-content-hash = "78344b191e4ebbc99a15e6d83532e9c44ba1bac8200f882d9be29676ab355b77"
+content-hash = "14f9eff66d1a8ceb54757987df57aee9fa46e2cf9e87c6d2b36f4a3891a7669a"
