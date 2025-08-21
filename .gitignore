@@ -2,5 +2,6 @@ __pycache__
 .env
 .python-version
 .venv
+livecoding
 staticfiles
 venv
