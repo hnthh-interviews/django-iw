@@ -1,3 +1,6 @@
+from django_filters.rest_framework import DjangoFilterBackend
+
+from apps.campaigns.api.v1.agency.filters import CampaignFilter
 from apps.campaigns.api.v1.agency.serializers import CampaignListAsAgencySerializer
 from core.api.views import AppGenericViewSet, AppListModelMixin
 from models.models import Campaign
@@ -10,3 +13,5 @@ class CampaignView(AppListModelMixin, AppGenericViewSet):
         "list": CampaignListAsAgencySerializer,
     }
     serializer_class = CampaignListAsAgencySerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = CampaignFilter

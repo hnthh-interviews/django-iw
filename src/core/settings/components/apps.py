@@ -12,5 +12,7 @@ INSTALLED_APPS = [
     "apps.campaigns.apps.CampaignsConfig",
     "apps.strategies.apps.StrategiesConfig",
     "models.apps.ModelsConfig",
+    "django_filters",
+    "drf_spectacular",
 ]
 # fmt: on
