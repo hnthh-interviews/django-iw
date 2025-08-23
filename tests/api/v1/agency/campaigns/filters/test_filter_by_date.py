@@ -36,5 +36,17 @@ def test_filter_by_date(as_anon, url, filter_option, expected_campaign_id):
     response = as_anon.get(url, filter_option)
     results = [x["id"] for x in response["results"]]
 
-    assert response.status == HTTPStatus.OK
+    assert response.status_code == HTTPStatus.OK
     assert results == expected_campaign_id
+
+
+@pytest.mark.parametrize(
+    "filter_option",
+    [
+        {"created_at_after": "2025-13-32"},
+        {"created_at_before": "2025-13-32"},
+    ]
+)
+def test_filter_with_invalid_params(as_anon, url, filter_option):
+    response = as_anon.get(url, filter_option)
+    assert response.status_code == HTTPStatus.BAD_REQUEST
