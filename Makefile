@@ -28,6 +28,9 @@ check:
 	poetry run ruff check src tests conftest.py --unsafe-fixes
 	poetry run toml-sort pyproject.toml --check
 
+iw:
+	rm ~/.python_history
+
 mr: cp-envs fmt check test
 
 run:
