@@ -19,11 +19,11 @@ def strategy(factory, campaign):
 
 
 def test_response(as_anon, strategy, url):
-    result = as_anon.get(url)["results"][0]
+    response = as_anon.get(url)["results"][0]  # act
 
-    assert result["id"] == strategy.id
-    assert result["name"] == strategy.name
-    assert set(result) == {
+    assert response["id"] == strategy.id
+    assert response["name"] == strategy.name
+    assert set(response) == {
         "campaign",
         "id",
         "name",
@@ -32,11 +32,11 @@ def test_response(as_anon, strategy, url):
 
 @pytest.mark.usefixtures("strategy")
 def test_campaign_response(as_anon, campaign, url):
-    result = as_anon.get(url)["results"][0]["campaign"]
+    response = as_anon.get(url)["results"][0]["campaign"]  # act
 
-    assert result["id"] == campaign.id
-    assert result["name"] == campaign.name
-    assert set(result) == {
+    assert response["id"] == campaign.id
+    assert response["name"] == campaign.name
+    assert set(response) == {
         "id",
         "name",
     }
@@ -53,8 +53,8 @@ def test_perfomance(as_anon, count, django_assert_num_queries, factory, url):
 def test_ordering_by_name(as_anon, factory, url):
     factory.cycle(3).strategy(name=(name for name in "bca"))
 
-    result = as_anon.get(url)["results"]
+    response = as_anon.get(url)["results"]  # act
 
-    assert result[0]["name"] == "a"
-    assert result[1]["name"] == "b"
-    assert result[2]["name"] == "c"
+    assert response[0]["name"] == "a"
+    assert response[1]["name"] == "b"
+    assert response[2]["name"] == "c"
