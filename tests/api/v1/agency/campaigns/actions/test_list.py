@@ -14,18 +14,17 @@ def campaign(factory):
 
 
 def test_response(as_anon, campaign, url):
-    response = as_anon.get(url)["results"][0]
+    result = as_anon.get(url)["results"][0]
 
-    assert response["id"] == campaign.id
-    assert response["name"] == campaign.name
-
-    assert set(response) == {
+    assert result["id"] == campaign.id
+    assert result["name"] == campaign.name
+    assert set(result) == {
         "id",
         "name",
     }
 
 
-@pytest.mark.parametrize("count", [1, 2])
+@pytest.mark.parametrize("count", [1, 2])  # noqa: AAA01
 def test_perfomance(as_anon, count, django_assert_num_queries, factory, url):
     factory.cycle(count).campaign()
 
@@ -36,8 +35,8 @@ def test_perfomance(as_anon, count, django_assert_num_queries, factory, url):
 def test_ordering_by_name(as_anon, factory, url):
     factory.cycle(3).campaign(name=(name for name in "bca"))
 
-    response = as_anon.get(url)["results"]
+    result = as_anon.get(url)["results"]
 
-    assert response[0]["name"] == "a"
-    assert response[1]["name"] == "b"
-    assert response[2]["name"] == "c"
+    assert result[0]["name"] == "a"
+    assert result[1]["name"] == "b"
+    assert result[2]["name"] == "c"
